@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="col-md-5">
+        <app-recipes-list (recipelisttoUpper) = "singlerecepidetails = $event"></app-recipes-list>
+    </div>
+    <div class="col-md-7" *ngIf ="!(singlerecepidetails) else selected">
+        <p>Please select recipe</p>       
+    </div>
+    <ng-template #selected>
+        <div class="col-md-7">
+            <app-recipes-details [passrecipedetails] = "singlerecepidetails" ></app-recipes-details>
+        </div>
+    </ng-template>
+</div>

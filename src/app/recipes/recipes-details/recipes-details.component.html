@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-xs-12">
+        <img [src]="passrecipedetails.imagepath" alt="" class="image-responsive" style="max-height:330px;">
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h1>{{passrecipedetails.name}}</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">{{passrecipedetails.description}}</div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="btn-group" appdropdown>
+            <button class="btn btn-primary dropdown-toggle"> Manage Recipe <span class="caret"></span>       
+            </button>
+            <ul class="dropdown-menu">
+                <li (click)="onAdd()">Shopping List</li>
+                <li href="#">Edit List</li>
+                <li href="#">Delete List</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor =" let ingredianr of passrecipedetails.ingridiant">
+                {{ingredianr.name}} - {{ingredianr.amount}}
+            </li>
+        </ul>
+    </div>
+</div>

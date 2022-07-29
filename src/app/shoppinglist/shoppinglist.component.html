@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-xs-10">
+        <app-shoppingedit></app-shoppingedit>
+        <hr>
+        <ul class="list-group">
+            <a href="#" class="list-group-item" style="cursor: pointer;" *ngFor = "let shopinglist of  ingridiant" (shoppingDetails) = "soppingdetailsAdded($event)" >
+              {{shopinglist.name}} ({{shopinglist.amount}})
+            </a>
+        </ul>
+    </div>
+</div>
