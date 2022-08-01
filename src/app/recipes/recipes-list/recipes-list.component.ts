@@ -8,11 +8,8 @@ import { RecipesService } from '../recipes.service';
 })
 export class RecipesListComponent implements OnInit {
 
- @Output() recipelisttoUpper = new EventEmitter<Recipe>(); 
  recipes: Recipe[];
-  recepedetailsget(recipedata:Recipe){
-      this.recipelisttoUpper.emit(recipedata);
-  }
+ 
   constructor(private recepeservice : RecipesService ) { }
 
   ngOnInit(): void {
