@@ -7,9 +7,9 @@ import { Subject } from "rxjs";
 export class RecipesService{
    selectedRecipe = new Subject<Recipe>();
    
-   recipes: Recipe[] = [new Recipe('A test', 'This is Simple Test', 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/12/cover-for-street-food-in-sydney.jpg',
+   recipes: Recipe[] = [new Recipe('Burger', 'This is Simple Test', 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/12/cover-for-street-food-in-sydney.jpg',
     [new ingrediant('mirch',1),new ingrediant('milk',2)]),
-  new Recipe('A test1', 'This is new Test', 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/12/cover-for-street-food-in-sydney.jpg',[new ingrediant('mirch',1),new ingrediant('milk',2)] )]
+  new Recipe('Cheeze Kadai', 'This is new Test', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO8HOYYpfX5sGSFXj4HoTAkNQ0UVWbsDr0fg&usqp=CAU',[new ingrediant('mirch',1),new ingrediant('milk',2)] )]
   
   constructor(private shppingservice:ShoppingListService) {}
    

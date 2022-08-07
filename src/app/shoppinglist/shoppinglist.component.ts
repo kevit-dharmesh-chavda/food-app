@@ -18,5 +18,7 @@ export class ShoppinglistComponent implements OnInit {
     // console.log(shoppingdata);
     this.ingridiant.push(shoppingdata);
   }
-
+  clickedIngrediant(clickindex:number){
+      this.shoppinglistservice.edittoingrediant.next(clickindex);
+  }
 }

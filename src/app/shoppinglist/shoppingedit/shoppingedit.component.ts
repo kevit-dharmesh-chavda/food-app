@@ -1,4 +1,5 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ingrediant } from 'src/app/shared-folder/ingrediant.module';
 import { ShoppingListService } from '../shopping-list.service';
 @Component({
@@ -8,15 +9,37 @@ import { ShoppingListService } from '../shopping-list.service';
 })
 export class ShoppingeditComponent implements OnInit {
 
-  @ViewChild('nameInput') nameInput:ElementRef;
-  @ViewChild('amountInput')amountInput:ElementRef;
-  // @Output() shoppingDetails = new EventEmitter<ingrediant> (); 
+  @ViewChild('f') form: NgForm;
   constructor(private shoppinglistservice: ShoppingListService) { }
-
+  editItem : ingrediant;
+  editIndex : number;
+  editmode:boolean = false;
   ngOnInit(): void {
+    this.shoppinglistservice.edittoingrediant.subscribe(
+      (index:number)=>{
+          this.editIndex = index;
+          this.editmode = true;
+          this.editItem = this.shoppinglistservice.getEditIngrediant(index);
+          this.form.setValue( {
+            inputname : this.editItem.name ,
+            inputamount : this.editItem.amount 
+      })
+           
+      }
+    )
+           
+  
   }
-  addItem(){
-    // this.shoppingDetails.emit(new ingrediant(this.nameInput.nativeElement.value,this.amountInput.nativeElement.value))
-        this.shoppinglistservice.addIngridiant(new ingrediant(this.nameInput.nativeElement.value,this.amountInput.nativeElement.value));
+  
+
+  addItem() {
+    if(this.editmode ){
+      this.shoppinglistservice.updatedIngrediant(this.editIndex,new ingrediant(this.form.value.inputname,this.form.value.inputamount))
+      this.editmode = false;
+    }
+    else{
+    this.shoppinglistservice.addIngridiant(new ingrediant(this.form.value.inputname, this.form.value.inputamount));
+    }
+    this.form.reset();
   }
 }
