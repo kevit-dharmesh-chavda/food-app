@@ -20,7 +20,7 @@
             <ul class="dropdown-menu">
                 <li (click)="onAdd()" style="cursor:pointer ;">Shopping List</li>
                 <li routerLink = "edit" style="cursor:pointer ;">Edit List</li>
-                <li style="cursor:pointer ;">Delete List</li>
+                <li style="cursor:pointer;" (click)="onDelete()">Delete List</li>
             </ul>
         </div>
     </div>
