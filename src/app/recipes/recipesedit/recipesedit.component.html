@@ -1,1 +1,66 @@
-<p>recipesedit works!</p>
+
+<div class="row">
+    <div class="col-xs-12">
+        <form action="" [formGroup]="recipeform">
+            <div class="row">
+                <div class="col-xs-12">
+                    
+                         <button type="button"  class="btn btn-success" (click)="onSubmit()" [disabled]="!recipeform.valid">save</button>
+                         <button class="btn btn-danger" (click)="onClear()">Cancel</button>
+        
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control"  formControlName=name>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="url">Image Url:</label>
+                        <input type="url" class="form-control"  formControlName=imagepath>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="Description">Description:</label>
+                        <textarea id="description" cols="30" rows="3" class="form-control" formControlName=description>
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" formArrayName="ingridiant">
+                    <div class="row" 
+                    *ngFor="let control of getArray(); let i = index"
+                    [formGroupName]="i"
+                     style="margin-top: 10px;"
+                    >
+                         <div class="col-xs-8">
+                            <input type="text" class="form-control" formControlName=name>
+                        </div>
+                        <div class="col-xs-2">
+                            <input type="number" class="form-control" formControlName=amount>
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn btn-danger" (click)="deleteIngrediant(i)">X</button>
+                        </div> 
+                         
+                    </div>
+                    <hr>
+                    <button class="btn btn-primary" type="button" (click)="addIngrdiant()">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+

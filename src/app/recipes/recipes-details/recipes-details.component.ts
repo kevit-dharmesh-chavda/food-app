@@ -22,6 +22,9 @@ export class RecipesDetailsComponent implements OnInit {
  
 
   }
+  onDelete(){
+    this.recipesService.deleteRecipe(this.id);
+  }
 
   onAdd(){
    this.recipesService.addingridianttoshopping(this.passrecipedetails.ingridiant) ; 

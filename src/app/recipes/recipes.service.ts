@@ -22,4 +22,13 @@ export class RecipesService{
   addingridianttoshopping(ingrdiant : ingrediant[]){
     this.shppingservice.addIngridiantsfromrecipe(ingrdiant);
    }
+   updaterecipe(index:number,recipe:Recipe){
+       this.recipes[index]=recipe;
+   }
+   addNewRecipe(recipe:Recipe){
+    this.recipes.push(recipe);
+   }
+   deleteRecipe(index:number){
+    this.recipes.splice(index,1);
+   }
 }
