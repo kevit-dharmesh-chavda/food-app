@@ -26,8 +26,7 @@ export class ShoppingeditComponent implements OnInit {
       })
            
       }
-    )
-           
+    )          
   
   }
   
