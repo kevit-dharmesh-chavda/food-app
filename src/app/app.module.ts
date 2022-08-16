@@ -16,6 +16,9 @@ import { DropDownDirective } from './shared-folder/dropdown.directive'
 import { ShoppingListService } from './shoppinglist/shopping-list.service';
 import { RecipeseditComponent } from './recipes/recipesedit/recipesedit.component'
 import { RecipesService } from './recipes/recipes.service';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthComponent } from './auth/auth.component';
+import { SpinnerComponent } from './shared-folder/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -28,12 +31,15 @@ import { RecipesService } from './recipes/recipes.service';
     ShoppinglistComponent,
     ShoppingeditComponent,
     DropDownDirective,
-    RecipeseditComponent
+    RecipeseditComponent,
+    AuthComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [ShoppingListService,RecipesService],

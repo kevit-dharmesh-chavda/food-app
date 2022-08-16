@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { DataStorageService } from '../shared-folder/data-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +9,20 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class HeaderComponent implements OnInit {
   collapsed = true;
   @Output() featuredSelected = new EventEmitter<string>();
-  
-  
-  linkIsClicked(feature:string){
-   this.featuredSelected.emit(feature);
+
+
+  linkIsClicked(feature: string) {
+    this.featuredSelected.emit(feature);
   }
 
-  constructor() { }
+  constructor(private storedata: DataStorageService) { }
 
   ngOnInit(): void {
   }
-
+  saveData() {
+    this.storedata.storeData();
+  }
+  fetchData(){
+    this.storedata.fetchData();
+  }
 }

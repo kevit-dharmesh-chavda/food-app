@@ -6,11 +6,11 @@ import { Subject } from "rxjs";
 @Injectable() 
 export class RecipesService{
    selectedRecipe = new Subject<Recipe>();
-   
-   recipes: Recipe[] = [new Recipe('Burger', 'This is Simple Test', 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/12/cover-for-street-food-in-sydney.jpg',
-    [new ingrediant('mirch',1),new ingrediant('milk',2)]),
-  new Recipe('Cheeze Kadai', 'This is new Test', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO8HOYYpfX5sGSFXj4HoTAkNQ0UVWbsDr0fg&usqp=CAU',[new ingrediant('mirch',1),new ingrediant('milk',2)] )]
-  
+   showfetchedRecipes = new Subject<Recipe[]>();
+  //  recipes: Recipe[] = [new Recipe('Burger', 'This is Simple Test', 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/12/cover-for-street-food-in-sydney.jpg',
+  //   [new ingrediant('mirch',1),new ingrediant('milk',2)]),
+  // new Recipe('Cheeze Kadai', 'This is new Test', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO8HOYYpfX5sGSFXj4HoTAkNQ0UVWbsDr0fg&usqp=CAU',[new ingrediant('mirch',1),new ingrediant('milk',2)] )]
+  recipes:Recipe[] = [];
   constructor(private shppingservice:ShoppingListService) {}
    
   getServiceRecipe(){
@@ -31,4 +31,8 @@ export class RecipesService{
    deleteRecipe(index:number){
     this.recipes.splice(index,1);
    }
+   setRecipes(recipe:Recipe[]){
+    this.recipes = recipe
+    this.showfetchedRecipes.next(this.recipes);
+  }
 }

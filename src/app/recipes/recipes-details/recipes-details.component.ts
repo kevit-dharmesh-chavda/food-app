@@ -19,6 +19,7 @@ export class RecipesDetailsComponent implements OnInit {
         this.passrecipedetails = this.recipesService.getRecipe(this.id);
       }
    )
+   
  
 
   }
