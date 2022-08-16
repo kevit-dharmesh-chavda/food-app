@@ -1,8 +1,9 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Component, Injectable } from "@angular/core";
-import { throwError } from "rxjs";
+import { Subject, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { tap } from "rxjs/operators";
+import { User } from "./user.module";
 export interface signupresponse {
     idToken: string,
     email: string,
@@ -15,7 +16,7 @@ export interface signupresponse {
     providedIn: "root"
 })
 export class AuthService {
-
+    user = new Subject<User>();
     constructor(private http: HttpClient) { }
 
     signup(email: string, password: string) {
@@ -61,5 +62,8 @@ export class AuthService {
         return throwError(errorMessage);
     }
     private authenticateUser(email: string, localId: string, token: string, expiresIn: number) {
+        const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+        const user = new User(email, localId, token, expirationDate);
+         this.user.next(user)    
     }
 }

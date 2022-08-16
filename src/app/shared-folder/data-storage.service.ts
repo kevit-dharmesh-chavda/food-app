@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { RecipesService } from "../recipes/recipes.service";
 import { HttpClient } from "@angular/common/http"
 import { Recipe } from "../recipes/recipes.module";
-import { map } from "rxjs-compat/operator/map";
+// import { map } from "rxjs-compat/operator/map";
 @Injectable({
     providedIn:'root'
 })
