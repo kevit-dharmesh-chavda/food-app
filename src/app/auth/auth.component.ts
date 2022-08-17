@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { Router } from "@angular/router";
 import { Observable, observable } from "rxjs";
 import { AuthService, signupresponse } from "./auth.service";
 
@@ -7,16 +8,22 @@ import { AuthService, signupresponse } from "./auth.service";
     selector: 'app-auth',
     templateUrl: './auth.component.html'
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit{
     loginMode: boolean = false;
     loading: boolean = false;
     error: string = null;
    
+    isAuthenticated : boolean = false;
     
-    
-    constructor(private authservice: AuthService) { }
+    constructor(private authservice: AuthService,private router:Router) { }
     onSwitchMode() {
         this.loginMode = !this.loginMode;
+    }
+
+    ngOnInit(): void {
+
+
+
     }
     onSubmit(authform: NgForm) {
         
@@ -37,6 +44,7 @@ export class AuthComponent {
         authObs.subscribe(responsedata => {
             console.log(responsedata);
             this.loading = false;
+           this.router.navigate(['/recipes']);
         },
             errorMessage => {
                 console.log(errorMessage)
