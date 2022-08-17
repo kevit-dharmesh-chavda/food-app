@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { AuthComponent } from '../auth/auth.component';
 import { AuthService } from '../auth/auth.service';
+
+import { RecipesService } from '../recipes/recipes.service';
 import { DataStorageService } from '../shared-folder/data-storage.service';
 
 @Component({
@@ -17,18 +18,27 @@ export class HeaderComponent implements OnInit {
     this.featuredSelected.emit(feature);
   }
 
-  constructor(private storedata: DataStorageService,private authservice:AuthService) { }
+  constructor(private storedata: DataStorageService,private authservice:AuthService,private recipes:RecipesService  ) { }
 
   ngOnInit(): void {
     this.authservice.user.subscribe(user=>{
       this.isAuthenticated = user?true:false
-      console.log(this.isAuthenticated,user)
   })
   }
   saveData() {
-    this.storedata.storeData();
+    this.storedata.storeData().subscribe(response =>{
+      console.log(response)
+    });
   }
   fetchData(){
-    this.storedata.fetchData();
+    this.storedata.fetchData().subscribe(
+      response => {
+          this.recipes.setRecipes(response);
+          console.log(response)
+      }
+  );
+  }
+  onLogout(){
+      // this.authservice.user.next(null)
   }
 }

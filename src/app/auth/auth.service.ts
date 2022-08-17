@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Component, Injectable } from "@angular/core";
-import { Subject, throwError } from "rxjs";
+import { BehaviorSubject, Subject, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { tap } from "rxjs/operators";
 import { User } from "./user.module";
@@ -16,7 +16,7 @@ export interface signupresponse {
     providedIn: "root"
 })
 export class AuthService {
-    user = new Subject<User>();
+    user = new BehaviorSubject<User>(null);
     constructor(private http: HttpClient) { }
 
     signup(email: string, password: string) {

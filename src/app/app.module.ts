@@ -16,9 +16,10 @@ import { DropDownDirective } from './shared-folder/dropdown.directive'
 import { ShoppingListService } from './shoppinglist/shopping-list.service';
 import { RecipeseditComponent } from './recipes/recipesedit/recipesedit.component'
 import { RecipesService } from './recipes/recipes.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
 import { SpinnerComponent } from './shared-folder/spinner/spinner.component';
+import { AuthInterceptorService } from './auth/auth.interceptor.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { SpinnerComponent } from './shared-folder/spinner/spinner.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ShoppingListService,RecipesService],
+  providers: [ShoppingListService,RecipesService,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

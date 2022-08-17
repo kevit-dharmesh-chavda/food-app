@@ -1,28 +1,27 @@
 import { Injectable } from "@angular/core";
 import { RecipesService } from "../recipes/recipes.service";
-import { HttpClient } from "@angular/common/http"
+import { HttpClient, HttpParams } from "@angular/common/http"
 import { Recipe } from "../recipes/recipes.module";
-// import { map } from "rxjs-compat/operator/map";
+import { AuthService } from "../auth/auth.service";
+import { pipe } from "rxjs";
+
+import { map } from "rxjs-compat/operator/map";
+import { ingrediant } from "./ingrediant.module";
+import { take } from "rxjs/operators";
 @Injectable({
-    providedIn:'root'
+    providedIn: 'root'
 })
-export class DataStorageService{
-    constructor(private recipes:RecipesService,private http:HttpClient){}
-    
-    storeData(){
-         const recipes = this.recipes.getServiceRecipe();
-         this.http.put('https://recipes-f6118-default-rtdb.firebaseio.com/recipes.json',recipes).subscribe(response=>{
-            // console.log(response)
-         })
+export class DataStorageService {
+    constructor(private recipes: RecipesService, private http: HttpClient, private authservice: AuthService) { }
+
+    storeData() {
+        const recipes = this.recipes.getServiceRecipe();
+        return this.http.put('https://recipes-f6118-default-rtdb.firebaseio.com/recipes.json', recipes)
     }
-    fetchData(){
-        this.http.get<Recipe[]>('https://recipes-f6118-default-rtdb.firebaseio.com/recipes.json')
-        .subscribe(
-            response =>{
-                this.recipes.setRecipes(response);
-                
-            }
-        )
-    }  
-     
+    fetchData() {
+
+       return this.http.get<Recipe[]>('https://recipes-f6118-default-rtdb.firebaseio.com/recipes.json')
+          
+    }
+
 }
