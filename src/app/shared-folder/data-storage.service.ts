@@ -5,7 +5,7 @@ import { Recipe } from "../recipes/recipes.module";
 import { AuthService } from "../auth/auth.service";
 import { pipe } from "rxjs";
 
-import { map } from "rxjs-compat/operator/map";
+import { map } from "rxjs/operators";
 import { ingrediant } from "./ingrediant.module";
 import { take } from "rxjs/operators";
 @Injectable({
