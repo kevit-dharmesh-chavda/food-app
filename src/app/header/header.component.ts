@@ -23,7 +23,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.authservice.user.subscribe(user=>{
       this.isAuthenticated = user?true:false
-  })
+    })
+    console.log(this.isAuthenticated)
+ 
   }
   saveData() {
     this.storedata.storeData().subscribe(response =>{

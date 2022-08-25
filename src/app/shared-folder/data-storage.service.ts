@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { RecipesService } from "../recipes/recipes.service";
 import { HttpClient, HttpParams } from "@angular/common/http"
-import { Recipe } from "../recipes/recipes.module";
+import { Recipe } from "../recipes/recipes.model";
 import { AuthService } from "../auth/auth.service";
 import { pipe } from "rxjs";
 

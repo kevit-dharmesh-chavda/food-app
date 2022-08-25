@@ -21,9 +21,6 @@ export class AuthComponent implements OnInit{
     }
 
     ngOnInit(): void {
-
-
-
     }
     onSubmit(authform: NgForm) {
         
@@ -34,8 +31,7 @@ export class AuthComponent implements OnInit{
         let authObs : Observable<signupresponse>
 
         if (this.loginMode) {
-         authObs =  this.authservice.login(email, password)
-           
+         authObs =  this.authservice.login(email, password)           
         }
         else {
           authObs =  this.authservice.signup(email, password)    
@@ -54,5 +50,8 @@ export class AuthComponent implements OnInit{
         );
 
         authform.reset();
+    }
+    onHndleError(){
+        this.error=null   
     }
 }
